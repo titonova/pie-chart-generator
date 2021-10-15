@@ -1,0 +1,45 @@
+<html>
+<body>
+    <canvas id="myCanvas"></canvas>
+    
+    <input id="income" name="income" placeholder ="Enter your monthly income">
+    <button type="submit" onclick="generate_pie_chart()">Generate pie chart</button>
+
+</body>
+</html>
+
+<script src="piechart.js"></script>
+<script>
+
+
+function generate_pie_chart(){
+    var income = document.getElementById("income").value
+    var myCanvas = document.getElementById("myCanvas");
+    myCanvas.width = 300;
+    myCanvas.height = 300;
+    
+    var ctx = myCanvas.getContext("2d");
+
+    var template  = {
+        "Food" : 0.13,
+        "Housing": 0.17,
+        "Savings": 0.22,
+        "Personal": 0.10,
+        "Donations":  0.09,
+        "Transportation": 0.05,
+        "Daycare/jojo": 0.02
+    }
+
+
+
+    var myPiechart = new Piechart(
+        {
+            canvas:myCanvas,
+            data:template,
+            amt: income,
+            colors:["#fde23e","#f16e23", "#57d9ff","#937e88"]
+        }
+    );
+    myPiechart.draw();
+}
+</script>
